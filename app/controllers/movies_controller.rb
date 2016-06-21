@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  
   def index
     @movies = Movie.all
   end
@@ -19,7 +20,7 @@ class MoviesController < ApplicationController
     @movie = Movie.new(movie_params)
 
     if @movie.save
-      redirect_to_movies_url
+      redirect_to movies_url
     else
       render :new
     end
@@ -44,6 +45,7 @@ class MoviesController < ApplicationController
   protected
 
   def movie_params
+    params["movie"]["release_date"] = params["movie"]["release_date"].to_date
     params.require(:movie).permit(
       :title, :release_date, :director, :runtime_in_minutes, :poster_image_url, :description)
   end

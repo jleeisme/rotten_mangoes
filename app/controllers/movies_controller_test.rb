@@ -3,7 +3,7 @@ require 'test_helper'
 class MoviesControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
-    assert_response: success    
+    assert_response :success    
   end
 
   test "should get show" do
@@ -20,5 +20,5 @@ class MoviesControllerTest < ActionController::TestCase
     get :edit
     assert_response :success
   end
-  
+
 end
