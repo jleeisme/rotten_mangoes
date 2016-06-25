@@ -18,9 +18,10 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
-    redirect_to movies_path
     if @user.destroy
+      binding.pry
       UserNotifier.user_delete(@user).deliver
+      redirect_to movies_path
     end
   end
 
