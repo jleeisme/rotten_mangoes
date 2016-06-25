@@ -19,6 +19,9 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
     redirect_to movies_path
+    if @user.destroy
+      UserNotifier.user_delete(@user).deliver
+    end
   end
 
   private

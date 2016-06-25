@@ -10,10 +10,10 @@ Rails.application.routes.draw do
   get "users/new"
   get "users/create"
 
-
   resources :movies do
     resources :reviews, only: [:new, :create]
   end
+  # needed to add a destroy route in order to delete
   resources :users, only: [:new, :create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
   namespace :admin do
