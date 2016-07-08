@@ -1,7 +1,18 @@
 class MoviesController < ApplicationController
-  
+
+  # def index
+  #   @movies = Movie.all.page(params[:page]).per(10)
+  #   # @movies = Movie.search(params[:search])
+  # end
+
+  # shows all movies and takes in a search query
   def index
     @movies = Movie.all
+    if params[:query]
+      @movies = Movie.search(params[:query])    
+    else
+      @movies = Movie.all
+    end
   end
 
   def show
@@ -28,7 +39,6 @@ class MoviesController < ApplicationController
 
   def update
     @movie = Movie.find(params[:id])
-
     if @movie.update_attributes(movie_params)
       redirect_to movie_path(@movie)
     else
@@ -42,12 +52,12 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
-  protected
+  private
 
   def movie_params
     params["movie"]["release_date"] = params["movie"]["release_date"].to_date
     params.require(:movie).permit(
-      :title, :release_date, :director, :runtime_in_minutes, :poster_image_url, :description)
+      :title, :release_date, :director, :runtime_in_minutes, :image, :description)
   end
 
 

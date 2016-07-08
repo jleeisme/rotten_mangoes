@@ -1,4 +1,10 @@
 source 'https://rubygems.org'
+
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'rmagick'
+gem 'kaminari'
+
 gem'pry'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'

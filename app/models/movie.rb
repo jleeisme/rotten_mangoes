@@ -1,5 +1,6 @@
 class Movie < ActiveRecord::Base
 
+  mount_uploader :image, ImageUploader
   has_many :reviews
 
   validates :title,
@@ -14,7 +15,7 @@ class Movie < ActiveRecord::Base
   validates :description,
     presence: true
 
-  validates :poster_image_url,
+  validates :image,
     presence: true
 
   validates :release_date,
@@ -22,11 +23,15 @@ class Movie < ActiveRecord::Base
 
   validate :release_date_is_in_the_past
 
-  def review_average
-    reviews.sum(:rating_out_of_ten)/reviews.size
+  def self.search(search)
+    where("title LIKE ? OR director LIKE ?", "%#{search}%", "%#{search}%") 
   end
 
-  protected
+  def review_average
+    reviews.sum(:rating_out_of_ten) / reviews.count unless reviews.empty?
+  end
+
+  private
 
   def release_date_is_in_the_past
     if release_date.present?

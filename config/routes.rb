@@ -1,15 +1,24 @@
 Rails.application.routes.draw do
+  get "admin/index"
+  get "admin/show"
+  get "admin/new"
+  get "admin/edit"
   get "reviews/new"
   get "reviews/create"
   get "sessions/new"
   get "sessions/create"
   get "users/new"
   get "users/create"
+
   resources :movies do
     resources :reviews, only: [:new, :create]
   end
-  resources :users, only: [:new, :create]
+  # needed to add a destroy route in order to delete
+  resources :users, only: [:new, :create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
+  namespace :admin do
+    resources :users#, only: [:index]
+  end
   root to: 'movies#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
