@@ -1,7 +1,9 @@
 
-#### Basic web app that takes in a movie, new users and an admin. 
-##### Practice with rails and CRUD.
-###### Unstyled
+* Basic web app that takes in a movie, new users and an admin. 
+
+* Practice with rails and CRUD.
+
+* Unstyled
 
 * Movies can be added, deleted, reviewed and included with a poster.
 
