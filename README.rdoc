@@ -26,3 +26,11 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+#### Basic web app that takes in a movie, new users and an admin. 
+##### Practice with rails and CRUD.
+###### Unstyled
+
+* Movies can be added, deleted, reviewed and included with a poster.
+
+* Users can also be deleted and added by admin.
